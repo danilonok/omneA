@@ -33,7 +33,7 @@ def execute_cmd_command(command: str) -> str:
         if not is_safe_command(command):
             return f'Command output: This PowerShell command is blocked for security reasons!'
 
-        result = subprocess.run(["powershell", "-Command", command], capture_output=True, text=True, shell=True)
+        result = subprocess.run(["powershell", "-Command", command], capture_output=True, text=True, shell=True,stdin=subprocess.DEVNULL)
         if result.returncode != 0:
             return f'Command error: {result.stderr}'
         elif result.stdout.strip() != '':
