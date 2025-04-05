@@ -20,8 +20,6 @@ class BaseGenerator:
             llm=self.llm
         ) 
         response = parser(query=query)   
-        if len(responce.tasks) != num_tasks:
-            print(f"WARNING: Expected {num_tasks} tasks, but got {len(responce.tasks)}")
-        return response.tasks
+        return response
     def agenerate():
         pass
