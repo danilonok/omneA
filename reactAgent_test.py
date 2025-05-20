@@ -1,5 +1,7 @@
 
-from llama_index.core.agent import ReActAgent
+from llama_index.core.agent.workflow import ReActAgent
+
+
 from llama_index.core.tools import QueryEngineTool, ToolMetadata, FunctionTool
 from tools import command_executor, popup
 from llama_index.core import PromptTemplate
@@ -10,6 +12,7 @@ from llama_index.tools.wikipedia.base import WikipediaToolSpec
 from llama_index.core.tools.tool_spec.load_and_search import (
     LoadAndSearchToolSpec,
 )
+import logger_phoenix
 
 
 new_summary_tmpl_str = (
@@ -44,6 +47,7 @@ All text assignments - as summarization, generation, rewriting - it is your task
 
 If you think there is not enough context information to fulfil the request, reask the user.
 
+If you received a command to open a file, it means you should read its content
 ## Tools
 
 You have access to a wide variety of tools. You are responsible for using the tools in any sequence you deem appropriate to complete the task at hand.
@@ -180,43 +184,52 @@ powershell_generator_tool = QueryEngineTool(query_engine=engine,
                 "Its output should be used in cmd_exec tool"
                 "Never pass the command itself, only instruction"
             )))
-executor_tool = FunctionTool.from_defaults(fn=command_executor.execute_cmd_command)
-popup_tool = FunctionTool.from_defaults(fn=popup.show_popup)
+executor_tool = FunctionTool.from_defaults(fn=command_executor.execute_cmd_command, name="cmd_executor",
+        description="Executes Windows CMD commands and returns their output.")
+popup_tool = FunctionTool.from_defaults(fn=popup.show_popup, name="popup", description="Shows a popup window with the given text.")
 
 tools_1 = [powershell_generator_tool, executor_tool]
-agent_1 = ReActAgent.from_tools(
-    verbose=True,
+agent_1 = ReActAgent(
+    name="pc_assistant",
+    description="A helpful assistant that can perform actions with the user's PC.",
     tools=tools_1,
         # context=context
 )
-agent_1.update_prompts({"agent_worker:system_prompt": pc_assistant_agent_prompt})
-print(agent_1.get_prompts())
+agent_1.update_prompts({"react_header": pc_assistant_agent_prompt})
 
-agent_tool = QueryEngineTool(
-    query_engine=agent_1,
-    metadata=ToolMetadata(
-        name="pc_assistant_agent",
-        description=("An ReAct-agent that can perform actions with the user's PC."
-                     "Use detailed request(plain text of what should be done) as an input to the tool."
-                     "Always pass ALL information in input field!"
-                     'Example: {"input": "Open browser"}'
-                     'Example: {"input": "Open file, path: path/to/file"}')
-    )
+
+async def call_pc_assistant_agent(input: str):
+    """An ReAct-agent that can perform actions with the user's PC.
+        Use detailed request(plain text of what should be done) as an input to the tool.
+        Always pass ALL information in input field!
+        Example: {"input": "Open browser"}
+        Example: {"input": "Open file, path: path/to/file"}"""
+
+    handler = agent_1.run(input)
+    return await handler
+
+pc_assistant_tool = FunctionTool.from_defaults(
+    fn=call_pc_assistant_agent,
+    name="pc_assistant_agent",
+    description=("An agent that can perform actions with the user's PC. Pass the request as a string.")
 )
+
 wiki_spec = WikipediaToolSpec()
 # Get the search wikipedia tool
 wiki_tool = wiki_spec.to_tool_list()[1]
 wiki_tool = LoadAndSearchToolSpec.from_defaults(wiki_tool).to_tool_list()
-tools_2 = [agent_tool, popup_tool] + wiki_tool
+tools_2 = [pc_assistant_tool, popup_tool] + wiki_tool
 
-agent_2 = ReActAgent.from_tools(
-    verbose=True,
-    tools=tools_2
+agent_2 = ReActAgent(
+    tools=tools_2,
+    max_iterations=20,
+    name="react_agent",
+    description="An ReAct-agent that can perform actions with the user's PC.",
     # context=context
 )
-agent_2.update_prompts({"agent_worker:system_prompt": react_agent_prompt})
+agent_2.update_prompts({"react_header": react_agent_prompt})
 
 #response = agent_2.chat("Request: Summarize contents of file C:/Work/day_report.txt and write this summary to file day_report_summary.txt in the same folder")
 # response = agent_2.chat("Write a story about robotic pony into C:/Work/robopony.txt")
-response = agent_2.chat("Create simple html file with a story about electric pony in C:/Work")
-print(str(response))
+# response = agent_2.chat("Create a simple python script that calculates Fibonacci number and execute it")
+# print(str(response))
