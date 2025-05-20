@@ -1,5 +1,5 @@
 from core.generator import BaseGenerator
-from prompts.prompts import DEFAULT_TASK_GENERATION_TMPL
+from core.prompts.prompts import DEFAULT_TASK_GENERATION_TMPL
 from pydantic import BaseModel
 from typing import List, Optional
 from llama_index.core.program import LLMTextCompletionProgram
