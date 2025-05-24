@@ -2,6 +2,7 @@ from few_shot_generation.generate_tasks import TaskGenerator
 from few_shot_generation.generate_commands import CommandGenerator
 from few_shot_generation.generate_env_setup import EnvSetupGenerator
 from few_shot_generation.create_dataset import Dataset
+import logger_phoenix
 import json
 # generator = TaskGenerator()
 
