@@ -2,12 +2,25 @@ from llama_index.core.agent.workflow import FunctionAgent
 from llama_index.core.workflow import Context
 from multipart import file_path
 
+import shutil
+
 
 async def copy_file(ctx: Context, origin: str, destination: str) -> str:
-    """Useful for copying file from origin location in PC to destination location. Your input must contain full paths of origin and destination of a copy operation"""
+    """Useful for copying file from origin location in PC to destination location. Your input must contain full paths of origin and destination of a copy operation. Both must contain name of file with an extension at the end
+    Example: origin: C:/file.txt, destination: D:/file.txt
+    """
     # Copy file from origin to destination
-    raise NotImplementedError()
-    return f'File from {origin} copied to {destination} successfully.'
+    try:
+        shutil.copy2(origin, destination)
+        return f'File from {origin} copied to {destination} successfully.'
+    except FileNotFoundError:
+        return "Source file not found."
+    except PermissionError:
+        return "Permission denied."
+    except Exception as e:
+        return f"An error occurred: {e}"
+
+
 
 async def create_file(ctx: Context, name: str, file_path:str) -> str:
     """Useful for creating a file using the path. Your input must contain name of a file with extension and full path of a place, where this file should be created."""
