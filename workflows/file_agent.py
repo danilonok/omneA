@@ -5,6 +5,7 @@ from multipart import file_path
 import shutil
 import os
 import send2trash
+import glob
 
 async def copy_file(ctx: Context, origin: str, destination: str) -> str:
     """Useful for copying file from origin location in PC to destination location. Your input must contain full paths of origin and destination of a copy operation. Both must contain name of file with an extension at the end
@@ -93,6 +94,15 @@ async def dir_path(ctx: Context, path:str) -> str:
         return content
     return f'Structure of a path {path}:\n{print_tree(path)}'
 
+async def search(ctx: Context, full_pattern: str, recursive=False) -> str:
+    """Useful for searching for files using python glob module. Your input must contain full pattern for search with glob.glob.
+    If recursive search is requested, use the `**/` wildcard and set `recursive=True`
+    Pattern should contain the file name pattern (e.g., `*.txt`, `data-??.csv`, `**/*.py`). It should also contain path where to look for file, like this: C:/Games/**/*.txt.
+    Use recursive field whether to search subdirectories (`true` or `false`)"""
+
+    files = glob.glob(full_pattern, recursive=recursive)
+    return f'Search results: {sorted(files)}' if files else "No matching files found."
+
 file_agent = FunctionAgent(
     name='FileAgent',
     description='Useful for operating with PC\'s file system. Use it for any file operations.',
@@ -100,7 +110,7 @@ file_agent = FunctionAgent(
         "You are FileAgent that can perform various actions with PC's file system."
         "Given a request, you should fulfil it and provide concise response as a report of your work."
     ),
-    tools=[copy_file, create_file, write_file, delete_file, read_file, dir_path],
+    tools=[copy_file, create_file, write_file, delete_file, read_file, dir_path, search],
     can_handoff_to=['AgentOrchestrator']
 )
 
