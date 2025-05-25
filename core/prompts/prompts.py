@@ -24,9 +24,9 @@ DEFAULT_TASK_GENERATION_TMPL = (
 
 DEFAULT_COMMAND_GENERATION_TMPL = (
     "You must create all required powershell commands to execute the user query {query}\n"
-    "Generate a list of distict commands, use one command at the time. Do not merge commands into one.\n"
+    "Generate a list of distinct commands, use one command at the time. Do not merge commands into one.\n"
     "Generate the commands as safe as possible, do not use any dangerous commands.\n"
-    "Create commands in the correfct order, so that the first command is executed first.\n"
+    "Create commands in the correct order, so that the first command is executed first.\n"
     "Do not use any comments in the commands.\n"
     "Do not use any unnecessary commands.\n"
 )

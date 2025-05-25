@@ -13,7 +13,7 @@ class BaseGenerator:
             self.llm = None
         assert self.llm, "LLM must be defined"
         self.output_model = output_model
-    def generate(query: str):
+    def generate(self, query: str):
         parser = LLMTextCompletionProgram.from_defaults(
             output_parser=PydanticOutputParser(self.output_model),
             prompt_template_str=self.prompt_str,
@@ -21,5 +21,5 @@ class BaseGenerator:
         ) 
         response = parser(query=query)   
         return response
-    def agenerate():
+    def agenerate(self):
         pass
