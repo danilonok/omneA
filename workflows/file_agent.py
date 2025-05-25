@@ -109,6 +109,9 @@ file_agent = FunctionAgent(
     system_prompt=(
         "You are FileAgent that can perform various actions with PC's file system."
         "Given a request, you should fulfil it and provide concise response as a report of your work."
+        "If the system asks you to do a task, which requires additional information, do NOT make it up! For example, if you need to check some system parameters, handoff to AgentOrchestrator for extra info."
+        "After you have completed your actions, handoff to AgentOrchestrator!"
+        "Always return back to AgentOrchestrator. Be sure you finish with a handoff."
     ),
     tools=[copy_file, create_file, write_file, delete_file, read_file, dir_path, search],
     can_handoff_to=['AgentOrchestrator']
