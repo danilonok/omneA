@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;">
+    <link href="./colors.css" rel="stylesheet">
+    <link href="./modal.css" rel="stylesheet">
+    <script src="logs.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <title>Logs</title>
+    <style>
+        button {
+            font-size: 16px;
+            font-family: 'Open Sans', sans-serif;
+            height: auto;
+            font-weight: 500;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: transparent;
+
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            width: auto;
+            height: 100%;
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+            position: relative;
+        }
+
+        #header_text {
+            font-size: 28px;
+
+        }
+
+        .header .back-button {
+            position: absolute;
+            background: #eee;
+        }
+
+        .back-button {
+
+            left: 0;
+            width: 36px;
+            height: 36px;
+            background: #fff;
+            border: none;
+            padding: 6px;
+            border-radius: 24px;
+            cursor: pointer;
+        }
+
+        table {
+            font-size: 16px;
+            font-family: 'Open Sans', sans-serif;
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        th {
+            background: #eee;
+        }
+
+        .log.info {
+            color: black;
+        }
+
+        .log.warn {
+            color: orange;
+        }
+
+        .log.error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <button id="back_btn" class="back-button"><img src="img/Arrow - Left.svg"></button>
+            <span id="header_text">Logs</span>
+        </div>
+
+        <div class="logs-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody id="logContainer">
+                    <tr class="log error">
+                        <td>ERROR</td>
+                        <td>Error occured during action execution</td>
+                    </tr>
+                    <tr class="log info">
+                        <td>INFO</td>
+                        <td>Agent executes an action</td>
+                    </tr>
+                    <tr class="log info">
+                        <td>INFO</td>
+                        <td>Agent decided an action</td>
+                    </tr>
+                    <tr class="log warn">
+                        <td>WARN</td>
+                        <td>Agent input may contain unappropriate query</td>
+                    </tr>
+                    <tr class="log info">
+                        <td>INFO</td>
+                        <td>Agent received input</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+
+
+
+
+    </div>
+
+
+</body>
+
+</html>

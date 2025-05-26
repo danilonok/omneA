@@ -1,0 +1,133 @@
+:root {
+    --primary-bg: #EFEFF0;
+    --subtle-light: #AFB1B6;
+    --text-color: #272727;
+    --send-button: #3D56FF;
+    --stop-button: #C73A3A;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 22px;
+}
+
+.main {
+    display: flex;
+    border-radius: 12px;
+    flex-direction: column;
+    background: rgba(255, 255, 255);
+    gap: 16px;
+    padding: 24px;
+
+
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+}
+
+.form-header {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+input {
+    display: block;
+}
+
+.input-frame {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 64px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.mic-div {
+    display: flex;
+    align-items: center;
+}
+
+.send-buttons {
+    display: flex;
+    flex-direction: row;
+    background: var(--primary-bg);
+    gap: 10px;
+}
+
+.send-button {
+    display: flex;
+    width: 64px;
+    background: blue;
+    justify-content: center;
+    align-items: center;
+    border: none;
+
+}
+
+.mic-button {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    background: white;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    border: none;
+}
+
+#styled-input {
+    flex: 1;
+    height: auto;
+    width: auto;
+    padding: 10px;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    background: var(--primary-bg);
+    border: none;
+    
+}
+#styled-input:focus {
+    outline: none;
+}
+.double_buttons {
+    display: flex;
+    gap: 8px;
+    padding: 6px;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--primary-bg);
+    border-radius: 24px;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+}
+
+.double_buttons_icons {
+    width: 24px;
+    height: 24px;
+}
+
+.double_buttons button {
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    height: 24px;
+}
+
+.vl {
+    border-left: 1.5px solid #EDEDED;
+    height: 16px;
+}

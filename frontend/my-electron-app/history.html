@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;">
+    <link href="./colors.css" rel="stylesheet">
+    <link href="./modal.css" rel="stylesheet">
+    <script src="modal.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <title>Request History</title>
+    <style>
+        button {
+            font-size: 16px;
+            font-family: 'Open Sans', sans-serif;
+            height: auto;
+            font-weight: 500;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: transparent;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            width: auto;
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+            position: relative;
+        }
+
+        #header_text {
+            font-size: 28px;
+
+        }
+
+        .header .button {
+            position: absolute;
+            background: #eee;
+        }
+
+        .button {
+
+            left: 0;
+            width: 36px;
+            height: 36px;
+            background: #fff;
+            border: none;
+            padding: 6px;
+            border-radius: 24px;
+            cursor: pointer;
+        }
+
+        .button img {
+            width: 24px;
+            height: 24px;
+
+        }
+
+        .clear-button {
+            position: absolute;
+            right: 0;
+            width: auto;
+            height: 36px;
+            background: #eee;
+            border: none;
+            padding: 8px;
+            border-radius: 24px;
+            cursor: pointer;
+
+        }
+
+        .entries {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .history-entry {
+            background: #eee;
+            padding: 12px 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .icon {
+            cursor: pointer;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="button" id="back_btn"><img src="img/Arrow - Left.svg"></button>
+            <span id="header_text">Request History</span>
+            <button class="clear-button delete-button">Clear history</button>
+        </div>
+        <div class="entries">
+            <div class="history-entry">
+                <span>History entry</span>
+                <div class="icons">
+                    <button class="button"><img src="img/delete-dustbin-01.svg"></button>
+                    <button class="button"><img src="img/Refresh cw.svg"></button>
+                </div>
+            </div>
+            <div class="history-entry">
+                <span>History entry</span>
+                <div class="icons">
+                    <button class="button"><img src="img/delete-dustbin-01.svg"></button>
+                    <button class="button"><img src="img/Refresh cw.svg"></button>
+                </div>
+            </div>
+            <div class="history-entry">
+                <span>History entry</span>
+                <div class="icons">
+                    <button class="button"><img src="img/delete-dustbin-01.svg"></button>
+                    <button class="button"><img src="img/Refresh cw.svg"></button>
+                </div>
+            </div>
+            <div class="history-entry">
+                <span>History entry</span>
+                <div class="icons">
+                    <button class="button"><img src="img/delete-dustbin-01.svg"></button>
+                    <button class="button"><img src="img/Refresh cw.svg"></button>
+                </div>
+            </div>
+            <div class="history-entry">
+                <span>History entry</span>
+                <div class="icons">
+                    <button class="button"><img src="img/delete-dustbin-01.svg"></button>
+                    <button class="button"><img src="img/Refresh cw.svg"></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-container">
+                <span class="modal-header">Are you sure you want to clear the history?</span>
+                <div class="modal-controls">
+                    <button class="cancel-button">Cancel</button>
+                    <button class="yes-button">Clear history</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

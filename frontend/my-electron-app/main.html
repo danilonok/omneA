@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self';">
+
+  <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+  <link href="./styles.css" rel="stylesheet">
+  <title>Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet">
+  <script src="renderer.js"></script>
+
+
+</head>
+
+<body>
+
+  <div class="main">
+
+    <div class="controls">
+      <div class="double_buttons">
+        <button id="history_btn"><img class="double_buttons_icons" src="img/clock-default.svg"></button>
+
+        <div class="vl"></div>
+        <button id="settings_btn"><img class="double_buttons_icons" src="img/settings-01.svg"></button>
+
+      </div>
+      <div>
+        <a><img src="img/multiple-cross-cancel-default.svg"></a>
+      </div>
+    </div>
+    <div class="form-container">
+      <span class="form-header">What can I assist you today with?</span>
+      <div class="input-frame">
+
+        <input id="styled-input" placeholder="Type your request here..."></input>
+        <div class="send-buttons">
+          
+          <button class="send-button" id="send_btn"><img src="img/send-plane-horizontal.svg"></button>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
