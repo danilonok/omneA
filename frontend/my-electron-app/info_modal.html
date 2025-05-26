@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self';">
+    <link href="./styles.css" rel="stylesheet">
+    <title>Report Info</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="info_modal.js"></script>
+    <title>Logs</title>
+    <style>
+        button {
+            font-size: 16px;
+            font-family: 'Open Sans', sans-serif;
+            height: auto;
+            font-weight: 500;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: transparent;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            width: auto;
+            height: 100%;
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
+        }
+
+        .header {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 0 0;
+        }
+
+        .header .back-button {
+            position: absolute;
+            background: #eee;
+        }
+
+        .info-modal {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            border-bottom: 1px solid #eee;
+            flex-shrink: 0;
+        }
+
+        .info-header {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0;
+            color: #333;
+        }
+
+        .close-button {
+            cursor: pointer;
+        }
+
+        .close-button img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .info-content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .execution-time {
+            font-size: 16px;
+            color: #000;
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        .report-content {
+            flex: 1;
+            overflow-y: auto;
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 24px;
+            line-height: 1.5;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="info-modal">
+        <div class="header-container">
+            <h2 class="header">Report</h2>
+            <div class="close-button">
+                <a><img src="img/multiple-cross-cancel-default.svg"></a>
+            </div>
+        </div>
+        <div class="info-content">
+            <p class="execution-time">Execution time: 10s</p>
+            <div class="report-content">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec accumsan lobortis justo vitae feugiat. Mauris malesuada consequat faucibus. Nunc nulla lacus, rhoncus eget lobortis faucibus, egestas quis elit. Praesent purus libero, elementum eu congue nec, ultricies eu lorem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus aliquam, velit sit amet scelerisque hendrerit, quam nisi rutrum turpis, in pharetra nisl mi eget justo. Aliquam rutrum eros turpis, id facilisis felis finibus eget. Sed vitae mauris tincidunt, semper sapien quis, tempus metus. Cras eget turpis efficitur, pretium enim vel, dictum erat. Fusce ornare est quam, lacinia hendrerit quam luctus id. Cras placerat imperdiet vehicula. In nisl lectus, cursus eget lectus non, interdum molestie leo. Nullam blandit viverra mauris, iaculis congue turpis gravida quis. Ut auctor, felis id molestie mattis, ante nibh cursus erat, eget pharetra eros odio id elit. Proin ultricies tellus nunc, eu pharetra est aliquet eu. Nam placerat sem et dui suscipit, a porta diam tincidunt.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -15,7 +15,14 @@ const mainWindowWidth = 700;
 let stepCount = 0;
 let stepInterval = null;
 let currentWindow = null;
+
+
 function loadMainWindow () {
+  if (win) {
+    win.close();
+    console.log('closed settings/history')
+
+  }
   win = new BrowserWindow({
     height: mainWindowHeight,
     width: mainWindowWidth,
@@ -38,18 +45,11 @@ function loadMainWindow () {
 
 }
 
-app.whenReady().then(() => {
-  loadMainWindow()
-})
-
-
-ipcMain.on('button-clicked', (event) => {
-  console.log(win)
-  loadHistoryWindow()
-  function loadHistoryWindow(){
-    if (win) {
-      win.close();
-      console.log('closed main')
+function loadHistoryWindow(){
+  
+  if (win) {
+    win.close();
+    console.log('closed main')
   }
 
   win = new BrowserWindow({
@@ -61,26 +61,21 @@ ipcMain.on('button-clicked', (event) => {
       transparent: true,
       webPreferences: {
           nodeIntegration: true,
+          // preloads are quite the same
           preload: path.join(__dirname, 'history_preload.js')
       }
   });
 
-  win.loadFile('history.html'); 
+  win.loadFile('info_modal.html'); 
   console.log('loaded history')
-
 }
-})
 
+function loadSettingsWindow(){
 
-
-ipcMain.on('settings-button-clicked', (event) => {
-  loadSettingsWindow()
-  function loadSettingsWindow(){
-    if (win) {
-      win.close();
-      console.log('closed main')
+  if (win) {
+    win.close();
+    console.log('closed main')
   }
-
   win = new BrowserWindow({
       width: mainWindowWidth,
       height: 390,
@@ -96,15 +91,12 @@ ipcMain.on('settings-button-clicked', (event) => {
   win.loadFile('settings.html'); 
   console.log('loaded settings')
 }
-})
 
+function loadLogsWindow(){
 
-ipcMain.on('logs-button-clicked', (event) => {
-  loadLogsWindow()
-  function loadLogsWindow(){
-    if (win) {
-      win.close();
-      console.log('closed settings')
+  if (win) {
+    win.close();
+    console.log('closed settings')
   }
 
   win = new BrowserWindow({
@@ -123,40 +115,29 @@ ipcMain.on('logs-button-clicked', (event) => {
   console.log('loaded logs')
 
 }
+
+// event listeners
+
+app.whenReady().then(() => {
+  loadMainWindow()
+})
+
+ipcMain.on('button-clicked', (event) => {
+  loadHistoryWindow()
+})
+
+ipcMain.on('settings-button-clicked', (event) => {
+  loadSettingsWindow()
+})
+
+
+ipcMain.on('logs-button-clicked', (event) => {
+  loadLogsWindow()
 })
 
 
 ipcMain.on('back-button-clicked', (event) => {
-
   loadMainWindow()
-  function loadMainWindow(){
-    if (win) {
-      win.close();
-      console.log('closed settings/history')
-
-  }
-
-  win = new BrowserWindow({
-    height: mainWindowHeight,
-    width: mainWindowWidth,
-    x: baseX,
-    y: baseY + stepHeight * 3, 
-    resizable: true,
-    frame: false,
-    transparent: true,
-    webPreferences: {
-      nodeIntegration: false,  
-      contextIsolation: true,  
-      preload: path.join(__dirname, 'preload.js') 
-    }
-  })
-
-  win.loadFile('main.html'); 
-  console.log('loaded main')
-
-
-
-}
 })
 
 
