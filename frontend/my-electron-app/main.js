@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain} = require('electron');
 const path = require('path');
-
+const { connectToWebSocket, getSocket } = require('./websocket_manager');
 
 let win = null
 let stepWindows = [];
@@ -66,7 +66,41 @@ function loadHistoryWindow(){
       }
   });
 
+  win.loadFile('history.html'); 
+  console.log('loaded history')
+}
+
+function loadInfoModalWindow(content){
+  if (win) {
+    win.close();
+    console.log('closed main')
+  }
+  //close step windows
+  stepWindows.forEach((win, index) =>{
+    win.close()
+  })
+
+
+
+  win = new BrowserWindow({
+      width: mainWindowWidth,
+      height: 450,
+      frame: false,
+      x: baseX,
+      y: baseY + stepHeight * 3 + mainWindowHeight - 450,
+      transparent: true,
+      webPreferences: {
+          nodeIntegration: true,
+          // preloads are quite the same
+          preload: path.join(__dirname, 'history_preload.js')
+      }
+  });
+
   win.loadFile('info_modal.html'); 
+  win.webContents.executeJavaScript(`
+    document.getElementById('content').innerText = ${JSON.stringify(content)};
+
+`);
   console.log('loaded history')
 }
 
@@ -118,9 +152,14 @@ function loadLogsWindow(){
 
 // event listeners
 
-app.whenReady().then(() => {
-  loadMainWindow()
-})
+app.whenReady().then(async () => {
+    try {
+        loadMainWindow();
+        await connectToWebSocket();
+    } catch (error) {
+        console.error('Failed to initialize:', error);
+    }
+});
 
 ipcMain.on('button-clicked', (event) => {
   loadHistoryWindow()
@@ -144,17 +183,42 @@ ipcMain.on('back-button-clicked', (event) => {
 
 
 
-ipcMain.on('send-button-clicked', (event) => {
-    
-  stepInterval = setInterval(() => {
-        step_num = stepCount + 1
-        
-        createStepWindow(step_num);
-    }, 500);
-})
 
 
-function createStepWindow(title) {
+ipcMain.on('send-message', (event, message) => {
+    const socket = getSocket();
+    if (socket && socket.readyState === WebSocket.OPEN) {
+        socket.send(message);
+    } else {
+        console.error('WebSocket is not connected');
+    }
+});
+
+ipcMain.on('websocket-message', (event, message) => {
+
+  let parsed;
+  try {
+    parsed = JSON.parse(message);
+  } catch (e) {
+    console.error('Invalid JSON message received:', message);
+    return;
+  }
+  console.log('Received WebSocket message in main:', message);
+
+  // if message is report, show in in info modal
+  if(parsed['type'] === 'report'){
+
+    loadInfoModalWindow(parsed['content'])
+  }
+  else{
+    console.log('test')
+    createStepWindow(parsed['content'], parsed['reason']);
+  }
+  
+  
+});
+
+function createStepWindow(title, reason) {
   
   if(stepCount > 1){
     clearInterval(stepInterval)
@@ -183,7 +247,9 @@ function createStepWindow(title) {
 
   stepWindow.loadFile('step.html');
   stepWindow.webContents.executeJavaScript(`
-    document.getElementById('step-number').innerText = ${title};
+    document.getElementById('header_text').innerText = ${JSON.stringify(title)};
+    document.getElementById('reason_text').innerText = ${JSON.stringify(reason)};
+
 `);
 
   stepWindows.push(stepWindow);
