@@ -4,7 +4,7 @@ from llama_index.core.workflow import Context
 import pandas as pd
 import subprocess
 
-df = pd.read_csv("InstalledApps.csv")
+df = pd.read_csv("workflows/InstalledApps.csv")
 
 
 def get_app_path(app_name):
@@ -30,12 +30,13 @@ async def run_app(ctx: Context, app_name: str):
 
 run_app_agent = FunctionAgent(
     name='RunAppAgent',
-    description='Useful for running installed apps in Windows. Handoff to me first! Do not call my functions!',
+    description='Useful for running installed apps in Windows like browsers, text editors, games etc. CANNOT RUN SCRIPTS!',
     system_prompt=(
         "You are RunAppAgent that can run different installed apps in Windows."
         "Given a request, you should fulfil it and provide concise response as a report of your work."
         "After you have completed your actions, handoff to AgentOrchestrator!"
         "Always return back to AgentOrchestrator. Be sure you finish with a handoff."
+        "You can't run scripts directly. Handoff back to orchestrator and give this as a reason. Advice it to use PowershellAgent."
     ),
     tools=[run_app],
     can_handoff_to=['AgentOrchestrator']

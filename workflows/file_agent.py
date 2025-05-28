@@ -1,6 +1,8 @@
 from llama_index.core.agent.workflow import FunctionAgent
 from llama_index.core.workflow import Context
-from multipart import file_path
+
+import os
+
 
 import shutil
 import os
@@ -25,7 +27,8 @@ async def copy_file(ctx: Context, origin: str, destination: str) -> str:
 
 
 async def create_file(ctx: Context, file_path:str) -> str:
-    """Useful for creating an empty file using the path. Your input must contain and full path of a future file containing name of a file with extension."""
+    """Useful for creating an empty file using the path. Your input must contain and full path of a future file containing name of a file with extension. For example, 'C:/Work/test.txt'
+    Be sure you've included the full path with file name! """
     # Create file
     try:
         with open(file_path, 'x') as file:
@@ -103,9 +106,30 @@ async def search(ctx: Context, full_pattern: str, recursive=False) -> str:
     files = glob.glob(full_pattern, recursive=recursive)
     return f'Search results: {sorted(files)}' if files else "No matching files found."
 
+async def rename(ctx: Context, old_path: str, new_path: str) -> str:
+    """Useful for renaming a file. Your input must contain a full original path and a full new renamed path.
+    Example: old_path: C:/file.txt, new_path: C:/new_file.txt
+    """
+    try:
+        os.rename(old_path, new_path)
+        return f'File renamed from {old_path} to {new_path} successfully.'
+    except FileNotFoundError:
+        return "Source file not found."
+    except FileExistsError:
+        return "Destination file already exists."
+    except PermissionError:
+        return "Permission denied."
+    except IsADirectoryError:
+        return "A directory was specified where a file was expected."
+    except NotADirectoryError:
+        return "A component of the path is not a directory."
+    except OSError as e:
+        return f"OS error occurred: {e}"
+
+
 file_agent = FunctionAgent(
     name='FileAgent',
-    description='Useful for operating with PC\'s file system. Use it for any file operations.',
+    description='Useful for operating with PC\'s file system. Use it for any file operations like creating and writing files, reading files, moving them etc.',
     system_prompt=(
         "You are FileAgent that can perform various actions with PC's file system."
         "Given a request, you should fulfil it and provide concise response as a report of your work."
@@ -113,7 +137,7 @@ file_agent = FunctionAgent(
         "After you have completed your actions, handoff to AgentOrchestrator!"
         "Always return back to AgentOrchestrator. Be sure you finish with a handoff."
     ),
-    tools=[copy_file, create_file, write_file, delete_file, read_file, dir_path, search],
+    tools=[copy_file, create_file, write_file, delete_file, read_file, dir_path, search, rename],
     can_handoff_to=['AgentOrchestrator']
 )
 

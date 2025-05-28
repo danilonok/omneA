@@ -16,12 +16,13 @@ async def execute_command(ctx: Context, command: str):
 
 powershell_agent = FunctionAgent(
     name='PowershellAgent',
-    description='Useful for creating and executing various Powershell commands in Windows 11.',
+    description='Useful for creating and executing various Powershell commands in Windows 11. Use it only if FileAgent cannot perform the task with files.',
     system_prompt=(
         "You are PowershellAgent that can create and execute Windows 11 Powershell Commands"
         "Given a request, you should fulfil it and provide concise response as a report of your work."
         "After you have completed your actions, handoff to AgentOrchestrator!"
         "Always return back to AgentOrchestrator. Be sure you finish with a handoff."
+        "Always give a proper reason for a handoff. AgentOrchestrator must know exactly why."
     ),
     tools=[generate_command, execute_command],
     can_handoff_to=['AgentOrchestrator']
