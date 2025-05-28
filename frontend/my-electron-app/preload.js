@@ -8,6 +8,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
         ipcRenderer.on('websocket-message', (event, message) => callback(message));
     },
     historyButtonClick: () => ipcRenderer.send('button-clicked'),
+    exitAppButtonClick: () => ipcRenderer.send('exit-app-button-clicked'),
     settingsButtonClick: () => ipcRenderer.send('settings-button-clicked'),
     sendButtonClick: () => ipcRenderer.send('send-button-clicked'),
 });

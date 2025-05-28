@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('settings_btn').addEventListener('click', () => {
         window.electronAPI.settingsButtonClick();
     });
+    document.getElementById('exit_app_btn').addEventListener('click', () => {
+        window.electronAPI.exitAppButtonClick();
+    });
+
 
     const sendButton = document.getElementById('send_btn');
     const inputField = document.getElementById('styled-input');

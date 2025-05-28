@@ -17,6 +17,10 @@ let stepInterval = null;
 let currentWindow = null;
 
 
+function closeApp(){
+    app.quit();
+}
+
 function loadMainWindow () {
   if (win) {
     win.close();
@@ -178,6 +182,9 @@ ipcMain.on('logs-button-clicked', (event) => {
 ipcMain.on('back-button-clicked', (event) => {
   loadMainWindow()
 })
+ipcMain.on('exit-app-button-clicked', (event) => {
+  closeApp()
+})
 
 
 
@@ -219,18 +226,21 @@ ipcMain.on('websocket-message', (event, message) => {
 });
 
 function createStepWindow(title, reason) {
-  
   if(stepCount > 1){
     clearInterval(stepInterval)
   }
   stepCount++;
+  // Filter out destroyed windows before updating positions
+  stepWindows = stepWindows.filter(win => !win.isDestroyed());
   stepWindows.slice().reverse().forEach((win, index) => {
-      win.setBounds({
-          x: baseX,
-          y: baseY + stepHeight * 2 - (index + 1) * stepHeight - (index + 2)*10,
-          width: mainWindowWidth,
-          height: stepHeight,
-      });
+      if (!win.isDestroyed()) {
+        win.setBounds({
+            x: baseX,
+            y: baseY + stepHeight * 2 - (index + 1) * stepHeight - (index + 2)*10,
+            width: mainWindowWidth,
+            height: stepHeight,
+        });
+      }
   });
 
   let stepWindow = new BrowserWindow({
@@ -249,8 +259,7 @@ function createStepWindow(title, reason) {
   stepWindow.webContents.executeJavaScript(`
     document.getElementById('header_text').innerText = ${JSON.stringify(title)};
     document.getElementById('reason_text').innerText = ${JSON.stringify(reason)};
-
-`);
+  `);
 
   stepWindows.push(stepWindow);
 }
