@@ -1,3 +1,4 @@
+from alembic.command import history
 from fastapi import FastAPI, WebSocket
 from llama_index.core.agent.workflow import (
     AgentInput,
@@ -7,21 +8,34 @@ from llama_index.core.agent.workflow import (
     AgentStream,
 )
 from core.logging.agent_logger import AgentLogger, LogType
+from core.history.history_manager import HistoryManager
 from workflows.agent_workflow import agent_workflow
 from llama_index.core.workflow import Context
 import json
+from fastapi.encoders import jsonable_encoder
+
 import os
 from dotenv import load_dotenv
 
+import time
+import math
+
 load_dotenv()
 agent_logger = AgentLogger('C:/Agents/Logs/log.txt')
+history_manager = HistoryManager('C:/Agents/History/history.json')
 agent_logger.readLogFile()
+history_manager.readHistoryFile()
 app = FastAPI()
 
 
 @app.get("/hi")
 def read_root():
     return {"Hello": "World"}
+
+@app.get("/history")
+def read_root():
+    entries = jsonable_encoder(history_manager.history_entries)
+    return entries
 
 @app.websocket("/ws/agent")
 async def websocket_agent(websocket: WebSocket):
@@ -31,6 +45,9 @@ async def websocket_agent(websocket: WebSocket):
 
     while True:
         query = await websocket.receive_text()
+        history_manager.add_history_entry(title=str(query).strip())
+        history_manager.saveHistoryFile()
+        start_time = time.time()
         handler = agent_workflow.run(
             user_msg=(str(query)), ctx=ctx
         )
@@ -88,10 +105,17 @@ async def websocket_agent(websocket: WebSocket):
 
         response = await handler # or step.json() if structured
         agent_logger.saveLogFile()
+        end_time = time.time()
+        time_delta = end_time - start_time
+        print('Request executed in: ',time_delta)
         await websocket.send_text(json.dumps({
             'type': 'report',
-            'content': str(response)
+            'content': str(response),
+            'time': math.trunc(time_delta * 100) / 100.
         }))
+
+
+
 
     #await websocket.close()
 

@@ -74,7 +74,7 @@ function loadHistoryWindow(){
   console.log('loaded history')
 }
 
-function loadInfoModalWindow(content){
+function loadInfoModalWindow(content, time){
   if (win) {
     win.close();
     console.log('closed main')
@@ -90,10 +90,10 @@ function loadInfoModalWindow(content){
 
   win = new BrowserWindow({
       width: mainWindowWidth,
-      height: 450,
+      height: 600,
       frame: false,
       x: baseX,
-      y: baseY + stepHeight * 3 + mainWindowHeight - 450,
+      y: baseY + stepHeight * 3 + mainWindowHeight - 600,
       transparent: true,
       webPreferences: {
           nodeIntegration: true,
@@ -105,6 +105,8 @@ function loadInfoModalWindow(content){
   win.loadFile('info_modal.html'); 
   win.webContents.executeJavaScript(`
     document.getElementById('content').innerText = ${JSON.stringify(content)};
+    document.getElementById('time').innerText = ${JSON.stringify(time)};
+
   `);
   console.log('loaded history')
 }
@@ -216,7 +218,7 @@ ipcMain.on('websocket-message', (event, message) => {
   // if message is report, show in in info modal
   if(parsed['type'] === 'report'){
 
-    loadInfoModalWindow(parsed['content'])
+    loadInfoModalWindow(parsed['content'], parsed['time']);
   }
   else{
     console.log('test')
