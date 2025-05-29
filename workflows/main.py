@@ -12,7 +12,7 @@ from workflows.agent_workflow import agent_workflow
 import logger_phoenix
 async def main():
     handler = agent_workflow.run(
-        user_msg=('Copy file agent.txt from C:/Agents to D:/Agents')
+        user_msg=('Create a python script in C:/Agents to claculate and print fibonaccui number and execute it')
     )
 
     current_agent = None

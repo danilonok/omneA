@@ -6,6 +6,7 @@ from workflows.powershell_agent import powershell_agent
 from workflows.agent_orchestrator import agent_orchestrator
 from workflows.run_app_agent import run_app_agent
 from workflows.web_search_agent import web_search_agent
+from workflows.media_control_agent import media_control_agent
 
 from datetime import datetime
 import os
@@ -27,7 +28,7 @@ info = {
 
 
 agent_workflow = AgentWorkflow(
-    agents=[agent_orchestrator, file_agent, powershell_agent, run_app_agent, web_search_agent],
+    agents=[agent_orchestrator, file_agent, powershell_agent, run_app_agent, web_search_agent, media_control_agent],
     root_agent="AgentOrchestrator",
     initial_state={
         'system_variables': info,

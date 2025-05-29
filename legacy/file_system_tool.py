@@ -1,4 +1,4 @@
-from tools.tool import Tool
+from legacy.tool import Tool
 import shutil
 import re
 """

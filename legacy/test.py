@@ -1,8 +1,7 @@
 from llama_index.core.prompts import PromptTemplate
 
-from agents.completion_agent import CompletionAgent
 from agents.reAct_agent import ReActAgent
-from tools.file_system_tool import FileSystemTool
+from legacy.file_system_tool import FileSystemTool
 from agents.parser import Parser
 
 fs_tool = FileSystemTool()

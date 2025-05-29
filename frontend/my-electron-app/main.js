@@ -79,12 +79,14 @@ function loadInfoModalWindow(content){
     win.close();
     console.log('closed main')
   }
-  //close step windows
-  stepWindows.forEach((win, index) =>{
-    win.close()
-  })
-
-
+  // Close step windows safely
+  stepWindows.forEach((win, index) => {
+    if (win && !win.isDestroyed()) {
+      win.close();
+    }
+  });
+  // Optionally clear the array if you want to remove references
+  stepWindows = [];
 
   win = new BrowserWindow({
       width: mainWindowWidth,
@@ -103,8 +105,7 @@ function loadInfoModalWindow(content){
   win.loadFile('info_modal.html'); 
   win.webContents.executeJavaScript(`
     document.getElementById('content').innerText = ${JSON.stringify(content)};
-
-`);
+  `);
   console.log('loaded history')
 }
 

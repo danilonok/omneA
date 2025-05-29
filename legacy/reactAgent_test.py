@@ -3,17 +3,14 @@ from llama_index.core.agent.workflow import ReActAgent
 
 
 from llama_index.core.tools import QueryEngineTool, ToolMetadata, FunctionTool
-from tools import command_executor, popup
+from tools import command_executor
+from legacy import popup
 from llama_index.core import PromptTemplate
 from index_loader.load_index import index
-from configs.llm_config import Settings
-from llama_index.core import SimpleDirectoryReader, VectorStoreIndex
 from llama_index.tools.wikipedia.base import WikipediaToolSpec
 from llama_index.core.tools.tool_spec.load_and_search import (
     LoadAndSearchToolSpec,
 )
-import logger_phoenix
-
 
 new_summary_tmpl_str = (
     "Helpful powershell command that can be handy:\n"

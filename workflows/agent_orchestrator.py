@@ -9,7 +9,7 @@ agent_orchestrator = ReActAgent(
     system_prompt=('You are AgentOrchestrator agent, which must orchestrate the whole agentic system. Can call another agents with Handoff function. DO NOT CALL TOOLS OF AGENTS!'
                    'When writing a final answer, do not make up results. If agentic system was unable to perform an action, be honest and ask the user to retry. You can only handoff.\n'
                    'YOU ARE ALLOWED TO USE ONLY HANDOFF TOOL. YOU WILL BE PUNISHED IF YOU USE ANY OTHER!'),
-    can_handoff_to=['FileAgent', 'PowershellAgent', 'RunAppAgent', 'WebSearchAgent'],
+    can_handoff_to=['FileAgent', 'PowershellAgent', 'RunAppAgent', 'WebSearchAgent', 'MediaControlAgent'],
 )
 
 agent_orchestrator.update_prompts({"react_header": agent_orchestrator_react_system_prompt})
