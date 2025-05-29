@@ -4,9 +4,9 @@ const { connectToWebSocket, getSocket } = require('./websocket_manager');
 
 let win = null
 let stepWindows = [];
-const stepHeight = 172; 
+const stepHeight = 200; 
 const baseX = 100;
-const baseY = 600;
+const baseY = 500;
 const mainWindowHeight = 220;
 const mainWindowWidth = 700;
 
