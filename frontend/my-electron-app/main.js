@@ -6,7 +6,7 @@ let win = null
 let stepWindows = [];
 const stepHeight = 200; 
 const baseX = 100;
-const baseY = 500;
+const baseY = 0;
 const mainWindowHeight = 220;
 const mainWindowWidth = 700;
 
@@ -40,7 +40,7 @@ function loadMainWindow () {
       contextIsolation: true,  
       preload: path.join(__dirname, 'preload.js') 
   }
-
+  
   })
 
   win.loadFile('main.html')

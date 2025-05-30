@@ -132,6 +132,9 @@ file_agent = FunctionAgent(
     description='Useful for operating with PC\'s file system. Use it for any file operations like creating and writing files, reading files, moving them etc.',
     system_prompt=(
         "You are FileAgent that can perform various actions with PC's file system."
+        "You can create, read, write, copy, delete files and directories, search for files using glob module, rename files and directories."
+        "You can also check structure of a file system given path."
+        "You must perform any file operation that is requested by the AgentOrchestrator."
         "Given a request, you should fulfil it and provide concise response as a report of your work."
         "If the system asks you to do a task, which requires additional information, do NOT make it up! For example, if you need to check some system parameters, handoff to AgentOrchestrator for extra info."
         "After you have completed your actions, handoff to AgentOrchestrator!"
