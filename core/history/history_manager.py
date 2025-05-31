@@ -35,3 +35,8 @@ class HistoryManager:
         history = HistoryEntry(title=title)
         self.history_entries.append(history)
 
+    def delete_history(self):
+        self.history_entries = []
+        with open(self.history_file, "w") as f:
+            f.write('')
+

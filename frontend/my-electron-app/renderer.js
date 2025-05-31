@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
         window.electronAPI.exitAppButtonClick();
     });
 
+    document.getElementById('styled-input').focus();
+
 
     const sendButton = document.getElementById('send_btn');
     const inputField = document.getElementById('styled-input');

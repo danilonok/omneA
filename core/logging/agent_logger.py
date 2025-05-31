@@ -1,4 +1,3 @@
-
 from pydantic import BaseModel, Field
 from uuid import uuid4, UUID
 from datetime import datetime
@@ -45,5 +44,13 @@ class AgentLogger:
     def log(self, agent_name: str, type: LogType, log_content: str):
         log = Log(agent=agent_name, type=type, log_text=log_content)
         self.logs.append(log)
+
+    def get_last_logs(self, n: int = 50):
+        return self.logs[-n:]
+
+    def delete_logs(self):
+        self.logs = []
+        with open(self.log_file, "w") as f:
+            f.write('')
 
 

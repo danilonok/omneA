@@ -119,7 +119,7 @@ function loadSettingsWindow(){
   }
   win = new BrowserWindow({
       width: mainWindowWidth,
-      height: 390,
+      height: 314,
       frame: false,
       x: baseX,
       y: baseY + stepHeight * 3 + mainWindowHeight - 390,
@@ -142,7 +142,7 @@ function loadLogsWindow(){
 
   win = new BrowserWindow({
       width: mainWindowWidth,
-      height: 376,
+      height: 449,
       frame: false,
       x: baseX,
       y: baseY + stepHeight * 3 + mainWindowHeight - 376,

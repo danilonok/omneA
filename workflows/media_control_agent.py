@@ -28,11 +28,11 @@ async def next_track() -> str:
 async def previous_track() -> str:
     """Useful for sending previous track signal to system."""
     keyboard.send("previous track")
-    return 'System received previous  track command.'
+    return 'System received previous track command.'
 async def set_volume_level(volume_level: int) -> str:
     """Useful for setting system volume level. Your input must contain int value of volume level from 0 to 100."""
-    volume.SetMasterVolumeLevelScalar(0.5, None)
-    return 'System received previous  track command.'
+    volume.SetMasterVolumeLevelScalar(volume_level/100, None)
+    return f'Volume level set to {volume_level}.'
 async def get_volume_level() -> str:
     """Useful for getting system volume level."""
     current = volume.GetMasterVolumeLevelScalar()

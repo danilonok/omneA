@@ -33,9 +33,26 @@ def read_root():
     return {"Hello": "World"}
 
 @app.get("/history")
-def read_root():
+def get_history():
     entries = jsonable_encoder(history_manager.history_entries)
     return entries
+
+@app.get("/logs")
+def get_logs():
+    entries = jsonable_encoder(agent_logger.get_last_logs(50))
+    return entries
+
+@app.post("/logs/delete")
+def delete_logs():
+    print('Logs deleted')
+    agent_logger.delete_logs()
+
+@app.post("/history/delete")
+def delete_history():
+    print('History cleared')
+
+    history_manager.delete_history()
+
 
 @app.websocket("/ws/agent")
 async def websocket_agent(websocket: WebSocket):

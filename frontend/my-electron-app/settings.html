@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;">
+        content="default-src 'self'; connect-src 'self' http://127.0.0.1:8000; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;">
     <link href="./colors.css" rel="stylesheet">
     <link href="./modal.css" rel="stylesheet">
     <script src="settings.js"></script>
@@ -227,7 +227,7 @@
         </div>
 
         <div class="settings">
-            <div class="settings-entry">
+            <!-- <div class="settings-entry">
                 <span>Settings with toggle</span>
                 <div class="toggle">
 
@@ -244,26 +244,32 @@
                     <span>Current text</span>
                     <button  id="edit-setting-btn" class="setting-button">Change</button>
                 </div>
-            </div>
+            </div> -->
 
             <div class="settings-entry">
-                <span>Dangerous setting</span>
+                <span>Delete logs</span>
                 <div class="text-with-changer">
 
 
-                    <button id="danger-setting-btn" class="danger setting-button">Change</button>
+                    <button id="delete_logs" class="danger setting-button">Delete</button>
+                </div>
+            </div>
+            <div class="settings-entry">
+                <span>Delete history</span>
+                <div class="text-with-changer">
+
+
+                    <button id="delete_history" class="danger setting-button">Delete</button>
                 </div>
             </div>
 
             <div class="settings-entry">
-                <span>Dropdown setting</span>
+                <span>Agent language</span>
                 <div id="dropdown">
                     <select>
-                        <option value="0">Dropdown setting</option>
-                        <option value="1">Dropdown setting</option>
-                        <option value="2">Dropdown setting</option>
-                        <option value="3">Dropdown setting</option>
-                        <option value="4">Dropdown setting</option>
+                        <option value="0">English</option>
+                        <option value="1">Ukrainian</option>
+                        <option value="2">German</option>
                     </select>
                 </div>
             </div>

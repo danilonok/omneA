@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;">
+        content="default-src 'self'; connect-src 'self' http://127.0.0.1:8000; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;">
     <link href="./colors.css" rel="stylesheet">
     <link href="./modal.css" rel="stylesheet">
     <script src="logs.js"></script>
@@ -71,16 +71,22 @@
             cursor: pointer;
         }
 
+        .logs-container {
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
         table {
-            font-size: 16px;
-            font-family: 'Open Sans', sans-serif;
             width: 100%;
+            table-layout: fixed;
             border-collapse: collapse;
-            margin-top: 10px;
         }
 
         th,
         td {
+            max-width: 300px;
+            word-break: break-word;
+            overflow-wrap: break-word;
             padding: 10px;
             text-align: left;
             border-bottom: 1px solid #444;
@@ -88,6 +94,25 @@
 
         th {
             background: #eee;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+
+        /* NEW: Scrollable tbody */
+        .logs-container tbody {
+            display: block;
+            max-height: 300px;
+            /* Set your desired height */
+            overflow-y: auto;
+            width: 100%;
+        }
+
+        .logs-container thead,
+        .logs-container tbody tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
         }
 
         .log.info {
