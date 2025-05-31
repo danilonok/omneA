@@ -16,7 +16,7 @@ async def execute_command(ctx: Context, command: str):
 
 powershell_agent = FunctionAgent(
     name='PowershellAgent',
-    description='Useful for creating and executing various Powershell commands in Windows 11. Use it only if FileAgent cannot perform the task with files.',
+    description='Useful for creating and executing various Powershell commands in Windows 11. Can execute API calls, open Websites and other. It is very powerfull and can execute almost everything.',
     system_prompt=(
         "You are PowershellAgent that can create and execute Windows 11 Powershell Commands"
         "Given a request, you should fulfil it and provide concise response as a report of your work."

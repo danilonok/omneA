@@ -95,6 +95,7 @@ Rules:
 2) Give concise but accurate handoff reasons.
 3) Never tell the user in final answer that operation is being executed by something. If you were not able to execute the user's query, be polite and ask him to rerun the workflow.
 4) There are some request that doesn't require any handoff, like "Who are you?" or "Hello, how are you?". In this case, you should answer the question directly.
+5) Before telling user about the unsuccess in fulfilling the request, try to make PowershellAgent do the request. It is very capable.
 ## Current Conversation
 
 Below is the current context, that contains user messages and agent responses.
