@@ -2,13 +2,12 @@ import subprocess
 import shlex
 import os
 DANGEROUS_COMMANDS = [
-    "Remove-Item", "Format-Volume", "Clear-Content", "Stop-Process",
+    "Remove-Item", "Format-Volume", "Clear-Content",
     "Stop-Computer", "Restart-Computer", "Set-ExecutionPolicy",
     "net user", "net localgroup", "Enable-PSRemoting",
-    "New-SmbShare", "Invoke-WebRequest", "Test-Connection",
+    "New-SmbShare", 
     "New-Object System.Net.Sockets.TcpClient", "Set-ItemProperty",
-    "Remove-Item -Path", "IEX (New-Object Net.WebClient)",
-    "Get-Process lsass", "Remove-Partition", "Format-Volume", "Set-Volume"
+    "Remove-Item -Path", "IEX (New-Object Net.WebClient)", "Remove-Partition", "Format-Volume", "Set-Volume"
 ]
 current_dir = None
 

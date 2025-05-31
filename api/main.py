@@ -84,11 +84,6 @@ async def websocket_agent(websocket: WebSocket):
                 print(f"🤖 Agent: {current_agent}")
                 print(f"{'=' * 50}\n")
 
-            # if isinstance(event, AgentStream):
-            #     if event.delta:
-            #         print(event.delta, end="", flush=True)
-            # elif isinstance(event, AgentInput):
-            #     print("📥 Input:", event.input)
 
 
 
