@@ -1,0 +1,623 @@
+{
+  "pairs": [
+    {
+      "query": "Copy a file from Documents to Desktop",
+      "steps": [
+        "FileAgent -> copy_file('C:/Users/Username/Documents/file.txt', 'C:/Users/Username/Desktop/file.txt')"
+      ]
+    },
+    {
+      "query": "Rename a file from old_name.txt to new_name.txt in Downloads",
+      "steps": [
+        "FileAgent -> rename('C:/Users/Username/Downloads/old_name.txt', 'C:/Users/Username/Downloads/new_name.txt')"
+      ]
+    },
+    {
+      "query": "Create a new text file named notes.txt in the Desktop folder",
+      "steps": [
+        "FileAgent -> create_file('C:/Users/Username/Desktop/notes.txt')"
+      ]
+    },
+    {
+      "query": "Write 'Hello World!' to a file named greeting.txt on Desktop",
+      "steps": [
+        "FileAgent -> write_file('Hello World!', 'C:/Users/Username/Desktop/greeting.txt')"
+      ]
+    },
+    {
+      "query": "Delete a file named 'temp.txt' from the Documents folder",
+      "steps": [
+        "FileAgent -> delete_file('C:/Users/Username/Documents/temp.txt')"
+      ]
+    },
+    {
+      "query": "Search for all .pdf files in Documents directory",
+      "steps": [
+        "FileAgent -> search('C:/Users/Username/Documents/*.pdf', recursive=False)"
+      ]
+    },
+    {
+      "query": "Play the current media",
+      "steps": [
+        "MediaControlAgent -> play()"
+      ]
+    },
+    {
+      "query": "Pause the current media playback",
+      "steps": [
+        "MediaControlAgent -> pause()"
+      ]
+    },
+    {
+      "query": "Skip to the next media track",
+      "steps": [
+        "MediaControlAgent -> next_track()"
+      ]
+    },
+    {
+      "query": "Set system volume to 50%",
+      "steps": [
+        "MediaControlAgent -> set_volume_level(50)"
+      ]
+    },
+    {
+      "query": "Get the current system volume level",
+      "steps": [
+        "MediaControlAgent -> get_volume_level()"
+      ]
+    },
+    {
+      "query": "Open Spotify",
+      "steps": [
+        "RunAppAgent -> run_app('Spotify')"
+      ]
+    },
+    {
+      "query": "Launch Notepad",
+      "steps": [
+        "RunAppAgent -> run_app('Notepad')"
+      ]
+    },
+    {
+      "query": "Search for 'weather today' online",
+      "steps": [
+        "WebSearchAgent -> search_web('weather today')"
+      ]
+    },
+    {
+      "query": "Open GitHub website",
+      "steps": [
+        "PowershellAgent -> generate_command('Open https://github.com in browser')",
+        "PowershellAgent -> execute_command('<generated command>')"
+      ]
+    },
+    {
+      "query": "Execute a command to list running processes using PowerShell",
+      "steps": [
+        "PowershellAgent -> generate_command('List running processes')",
+        "PowershellAgent -> execute_command('<generated command>')"
+      ]
+    },
+    {
+      "query": "Inspect the directory structure of the Desktop folder",
+      "steps": [
+        "FileAgent -> dir_path('C:/Users/Username/Desktop')"
+      ]
+    },
+    {
+      "query": "Move a file from Desktop to Documents",
+      "steps": [
+        "FileAgent -> rename('C:/Users/Username/Desktop/file.txt', 'C:/Users/Username/Documents/file.txt')"
+      ]
+    },
+    {
+      "query": "Go back to the previous media track",
+      "steps": [
+        "MediaControlAgent -> previous_track()"
+      ]
+    },
+    {
+      "query": "Turn system volume to mute",
+      "steps": [
+        "MediaControlAgent -> set_volume_level(0)"
+      ]
+    },
+    {
+      "query": "Increase volume level by 10%",
+      "steps": [
+        "MediaControlAgent -> get_volume_level()",
+        "<retrieve current volume level> + 10",
+        "MediaControlAgent -> set_volume_level(<new calculated volume>)"
+      ]
+    },
+    {
+      "query": "Find all .jpg files under Pictures folder and its subdirectories",
+      "steps": [
+        "FileAgent -> search('C:/Users/Username/Pictures/**/*.jpg', recursive=True)"
+      ]
+    },
+    {
+      "query": "Launch Microsoft Edge browser",
+      "steps": [
+        "RunAppAgent -> run_app('Microsoft Edge')"
+      ]
+    },
+    {
+      "query": "Open Calculator app",
+      "steps": [
+        "RunAppAgent -> run_app('Calculator')"
+      ]
+    },
+    {
+      "query": "Create a blank file named 'draft.docx' in Documents",
+      "steps": [
+        "FileAgent -> create_file('C:/Users/Username/Documents/draft.docx')"
+      ]
+    },
+    {
+      "query": "Delete all files named 'backup.zip' in Downloads folder",
+      "steps": [
+        "FileAgent -> search('C:/Users/Username/Downloads/backup.zip', recursive=False)",
+        "FileAgent -> delete_file('<each found file path>')"
+      ]
+    },
+    {
+      "query": "Search the web for 'best laptop 2023'",
+      "steps": [
+        "WebSearchAgent -> search_web('best laptop 2023')"
+      ]
+    },
+    {
+      "query": "Look for a word in the PowerShell console dictionary function",
+      "steps": [
+        "PowershellAgent -> generate_command('Function that looks up a word meaning in PowerShell')",
+        "PowershellAgent -> execute_command('<generated command>')"
+      ]
+    },
+    {
+      "query": "Copy all PDF files from Downloads to Documents",
+      "steps": [
+        "FileAgent -> search('C:/Users/Username/Downloads/*.pdf', recursive=False)",
+        "FileAgent -> copy_file('<each PDF file path>', 'C:/Users/Username/Documents/<PDF filename>')"
+      ]
+    },
+    {
+      "query": "Open YouTube in the default browser",
+      "steps": [
+        "PowershellAgent -> generate_command('Open https://youtube.com in browser')",
+        "PowershellAgent -> execute_command('<generated command>')"
+      ]
+    },
+    {
+      "query": "Find and delete all .log files in the C:\\Logs directory.",
+      "steps": [
+        "FileAgent -> search('C:\\Logs\\*.log', recursive=False)",
+        "FileAgent -> delete_file('<full path to found file>')"
+      ]
+    },
+    {
+      "query": "Set system volume to 50% and play media.",
+      "steps": [
+        "MediaControlAgent -> set_volume_level(50)",
+        "MediaControlAgent -> play()"
+      ]
+    },
+    {
+      "query": "Create a new file report.txt on the desktop and write 'Task Completed' in it.",
+      "steps": [
+        "FileAgent -> create_file('C:\\Users\\<username>\\Desktop\\report.txt')",
+        "FileAgent -> write_file('Task Completed', 'C:\\Users\\<username>\\Desktop\\report.txt')"
+      ]
+    },
+    {
+      "query": "Search the web for the latest weather update and open Notepad to note it down.",
+      "steps": [
+        "WebSearchAgent -> search_web('latest weather update')",
+        "RunAppAgent -> run_app('Notepad')"
+      ]
+    },
+    {
+      "query": "Pause any playing media and set system volume to 10%.",
+      "steps": [
+        "MediaControlAgent -> pause()",
+        "MediaControlAgent -> set_volume_level(10)"
+      ]
+    },
+    {
+      "query": "Launch Notepad and write 'Hello World' in a new file.",
+      "steps": [
+        "RunAppAgent -> run_app('Notepad')",
+        "PowershellAgent -> generate_command('Type \"Hello World\" into Notepad')",
+        "PowershellAgent -> execute_command('<generated command>')"
+      ]
+    },
+    {
+      "query": "Copy report.docx from Documents to C:\\Backup.",
+      "steps": [
+        "FileAgent -> copy_file('C:\\Users\\<username>\\Documents\\report.docx', 'C:\\Backup\\report.docx')"
+      ]
+    },
+    {
+      "query": "Rename image.png to vacation.png in Pictures folder.",
+      "steps": [
+        "FileAgent -> rename('C:\\Users\\<username>\\Pictures\\image.png', 'C:\\Users\\<username>\\Pictures\\vacation.png')"
+      ]
+    },
+    {
+      "query": "Open Outlook and search for emails from John Doe.",
+      "steps": [
+        "RunAppAgent -> run_app('Outlook')",
+        "PowershellAgent -> generate_command('Search emails from John Doe in Outlook')",
+        "PowershellAgent -> execute_command('<generated command>')"
+      ]
+    },
+    {
+      "query": "Search for files larger than 1GB on C drive and list them.",
+      "steps": [
+        "PowershellAgent -> generate_command('Get files larger than 1GB on C drive')",
+        "PowershellAgent -> execute_command('<generated command>')"
+      ]
+    },
+    {
+      "query": "Open calculator and set volume to mute before starting.",
+      "steps": [
+        "MediaControlAgent -> set_volume_level(0)",
+        "RunAppAgent -> run_app('Calculator')"
+      ]
+    },
+    {
+      "query": "Create a backup folder in Documents and move all .txt files there.",
+      "steps": [
+        "FileAgent -> create_file('C:\\Users\\<username>\\Documents\\Backup')",
+        "FileAgent -> search('C:\\Users\\<username>\\Documents\\*.txt', recursive=False)",
+        "FileAgent -> copy_file('<found txt file>', 'C:\\Users\\<username>\\Documents\\Backup\\<filename>')"
+      ]
+    },
+    {
+      "query": "Play next media track and set volume to 70%.",
+      "steps": [
+        "MediaControlAgent -> next_track()",
+        "MediaControlAgent -> set_volume_level(70)"
+      ]
+    },
+    {
+      "query": "Open Notepad and type today's date.",
+      "steps": [
+        "RunAppAgent -> run_app('Notepad')",
+        "PowershellAgent -> generate_command('Type today\\'s date into Notepad')",
+        "PowershellAgent -> execute_command('<generated command>')"
+      ]
+    },
+    {
+      "query": "Perform a web search for 'AI trends 2023' and open first link in default browser.",
+      "steps": [
+        "WebSearchAgent -> search_web('AI trends 2023')",
+        "PowershellAgent -> generate_command('Open first link in default browser')",
+        "PowershellAgent -> execute_command('<generated command>')"
+      ]
+    },
+    {
+      "query": "Inspect contents of C:\\Projects to 3 levels depth and open in Explorer.",
+      "steps": [
+        "FileAgent -> dir_path('C:\\Projects')",
+        "PowershellAgent -> generate_command('Open C:\\Projects\\ in Explorer')",
+        "PowershellAgent -> execute_command('<generated command>')"
+      ]
+    },
+    {
+      "query": "Launch Edge and navigate to https://example.com.",
+      "steps": [
+        "RunAppAgent -> run_app('Edge')",
+        "PowershellAgent -> generate_command('Open https://example.com in Edge')",
+        "PowershellAgent -> execute_command('<generated command>')"
+      ]
+    },
+    {
+      "query": "Set a reminder on Windows to call mom in an hour.",
+      "steps": [
+        "PowershellAgent -> generate_command('Set a reminder to call mom in an hour')",
+        "PowershellAgent -> execute_command('<generated command>')"
+      ]
+    },
+    {
+      "query": "Search for files named data.csv in D:\\ and copy them to backup folder.",
+      "steps": [
+        "FileAgent -> search('D:\\**\\data.csv', recursive=True)",
+        "FileAgent -> copy_file('<full path of found file>', 'D:\\backup\\<filename>')"
+      ]
+    },
+    {
+      "query": "Reduce system volume by half and go to previous media track.",
+      "steps": [
+        "MediaControlAgent -> get_volume_level()",
+        "MediaControlAgent -> set_volume_level('<current volume level> / 2')",
+        "MediaControlAgent -> previous_track()"
+      ]
+    },
+    {
+      "query": "Generate PowerShell command to list installed applications and execute it.",
+      "steps": [
+        "PowershellAgent -> generate_command('List installed applications')",
+        "PowershellAgent -> execute_command('<generated command>')"
+      ]
+    },
+    {
+      "query": "Open PowerShell and execute 'Get-Process'.",
+      "steps": [
+        "RunAppAgent -> run_app('PowerShell')",
+        "PowershellAgent -> execute_command('Get-Process')"
+      ]
+    },
+    {
+      "query": "Search for 'best laptops 2023' online and note down in Notepad.",
+      "steps": [
+        "WebSearchAgent -> search_web('best laptops 2023')",
+        "RunAppAgent -> run_app('Notepad')"
+      ]
+    },
+    {
+      "query": "Delete temporary files in C:\\Temp folder.",
+      "steps": [
+        "FileAgent -> search('C:\\Temp\\*', recursive=False)",
+        "FileAgent -> delete_file('<full path of temporary file>')"
+      ]
+    },
+    {
+      "query": "Find and rename all .jpg files in E:\\Images to .jpeg.",
+      "steps": [
+        "FileAgent -> search('E:\\Images\\*.jpg', recursive=False)",
+        "FileAgent -> rename('E:\\Images\\<found file>', 'E:\\Images\\<new name>.jpeg')"
+      ]
+    },
+    {
+      "query": "Check and increase system volume by 20%.",
+      "steps": [
+        "MediaControlAgent -> get_volume_level()",
+        "MediaControlAgent -> set_volume_level('<current volume level> + 20')"
+      ]
+    },
+    {
+      "query": "Create a new folder called Archive on the desktop and move all pdfs there.",
+      "steps": [
+        "FileAgent -> create_file('C:\\Users\\<username>\\Desktop\\Archive')",
+        "FileAgent -> search('C:\\Users\\<username>\\Desktop\\*.pdf', recursive=False)",
+        "FileAgent -> rename('C:\\Users\\<username>\\Desktop\\<found file>', 'C:\\Users\\<username>\\Desktop\\Archive\\<filename>')"
+      ]
+    },
+    {
+      "query": "Search web for 'Python tutorials' and open the third result.",
+      "steps": [
+        "WebSearchAgent -> search_web('Python tutorials')",
+        "PowershellAgent -> generate_command('Open third search result in browser')",
+        "PowershellAgent -> execute_command('<generated command>')"
+      ]
+    },
+    {
+      "query": "Create a new text file with the content 'Hello World' in the Documents folder.",
+      "steps": [
+        "FileAgent -> create_file('C:/Users/Username/Documents/hello.txt')",
+        "FileAgent -> write_file('Hello World', 'C:/Users/Username/Documents/hello.txt')"
+      ]
+    },
+    {
+      "query": "Search for all '.txt' files in the Documents folder and move them to a new folder called 'TextFiles'.",
+      "steps": [
+        "FileAgent -> search('C:/Users/Username/Documents/*.txt', recursive=False)",
+        "FileAgent -> create_file('C:/Users/Username/Documents/TextFiles')",
+        "FileAgent -> copy_file('<found file>', 'C:/Users/Username/Documents/TextFiles/')"
+      ]
+    },
+    {
+      "query": "Open Notepad and increase the system volume to 75%.",
+      "steps": [
+        "RunAppAgent -> run_app('Notepad')",
+        "MediaControlAgent -> set_volume_level(75)"
+      ]
+    },
+    {
+      "query": "Play the current media, increase volume to 50%, and open calculator.",
+      "steps": [
+        "MediaControlAgent -> play()",
+        "MediaControlAgent -> set_volume_level(50)",
+        "RunAppAgent -> run_app('Calculator')"
+      ]
+    },
+    {
+      "query": "Create a backup of the 'ImportantDocs' folder in 'D:/Backup' directory.",
+      "steps": [
+        "FileAgent -> dir_path('C:/Users/Username/ImportantDocs')",
+        "FileAgent -> search('C:/Users/Username/ImportantDocs/*', recursive=True)",
+        "FileAgent -> copy_file('<found file>', 'D:/Backup/')"
+      ]
+    },
+    {
+      "query": "Search for any '.jpg' files on the desktop and delete them.",
+      "steps": [
+        "FileAgent -> search('C:/Users/Username/Desktop/*.jpg', recursive=False)",
+        "FileAgent -> delete_file('<found file>')"
+      ]
+    },
+    {
+      "query": "Set system volume to 30%, open Spotify, and skip to the next track.",
+      "steps": [
+        "MediaControlAgent -> set_volume_level(30)",
+        "RunAppAgent -> run_app('Spotify')",
+        "MediaControlAgent -> next_track()"
+      ]
+    },
+    {
+      "query": "Rename a file 'draft.docx' to 'final.docx' in the Documents folder.",
+      "steps": [
+        "FileAgent -> dir_path('C:/Users/Username/Documents')",
+        "FileAgent -> rename('C:/Users/Username/Documents/draft.docx', 'C:/Users/Username/Documents/final.docx')"
+      ]
+    },
+    {
+      "query": "Open Google Chrome and navigate to 'https://openai.com' using commands.",
+      "steps": [
+        "RunAppAgent -> run_app('Google Chrome')",
+        "PowershellAgent -> generate_command('Open https://openai.com in Google Chrome')",
+        "PowershellAgent -> execute_command('<generated command>')"
+      ]
+    },
+    {
+      "query": "Pause the current playing media and open Word.",
+      "steps": [
+        "MediaControlAgent -> pause()",
+        "RunAppAgent -> run_app('Word')"
+      ]
+    },
+    {
+      "query": "Create a folder named 'Photos' on the desktop and copy all images there from 'Pictures'.",
+      "steps": [
+        "FileAgent -> create_file('C:/Users/Username/Desktop/Photos')",
+        "FileAgent -> search('C:/Users/Username/Pictures/*.{jpg,png,gif}', recursive=False)",
+        "FileAgent -> copy_file('<found file>', 'C:/Users/Username/Desktop/Photos')"
+      ]
+    },
+    {
+      "query": "Set volume to 100%, play media, and open VLC player.",
+      "steps": [
+        "MediaControlAgent -> set_volume_level(100)",
+        "MediaControlAgent -> play()",
+        "RunAppAgent -> run_app('VLC Media Player')"
+      ]
+    },
+    {
+      "query": "Find and print content of a file named 'log.txt' in Documents.",
+      "steps": [
+        "FileAgent -> search('C:/Users/Username/Documents/log.txt', recursive=False)",
+        "FileAgent -> read_file('C:/Users/Username/Documents/log.txt')"
+      ]
+    },
+    {
+      "query": "Write 'This is a test' into a file 'test.txt' and open it in Notepad.",
+      "steps": [
+        "FileAgent -> create_file('C:/Users/Username/Documents/test.txt')",
+        "FileAgent -> write_file('This is a test', 'C:/Users/Username/Documents/test.txt')",
+        "RunAppAgent -> run_app('Notepad')"
+      ]
+    },
+    {
+      "query": "Copy and rename 'report.docx' from Documents to 'old_report.docx' in Archive folder.",
+      "steps": [
+        "FileAgent -> dir_path('C:/Users/Username/Documents')",
+        "FileAgent -> copy_file('C:/Users/Username/Documents/report.docx', 'C:/Users/Username/Documents/Archive/old_report.docx')"
+      ]
+    },
+    {
+      "query": "Play next media track, open PowerPoint, and set volume to 60%.",
+      "steps": [
+        "MediaControlAgent -> next_track()",
+        "RunAppAgent -> run_app('PowerPoint')",
+        "MediaControlAgent -> set_volume_level(60)"
+      ]
+    },
+    {
+      "query": "Search the web for 'latest AI trends' and open the Chrome browser.",
+      "steps": [
+        "WebSearchAgent -> search_web('latest AI trends')",
+        "RunAppAgent -> run_app('Google Chrome')"
+      ]
+    },
+    {
+      "query": "Stop media playback, delete 'temp.txt' from Documents, and open Excel.",
+      "steps": [
+        "MediaControlAgent -> pause()",
+        "FileAgent -> delete_file('C:/Users/Username/Documents/temp.txt')",
+        "RunAppAgent -> run_app('Excel')"
+      ]
+    },
+    {
+      "query": "Search for 'financial report' in Documents and move to Finance folder.",
+      "steps": [
+        "FileAgent -> search('C:/Users/Username/Documents/financial report*', recursive=False)",
+        "FileAgent -> rename('<found file>', 'C:/Users/Username/Documents/Finance/<found file>')"
+      ]
+    },
+    {
+      "query": "Open the default browser and search 'best coding practices'.",
+      "steps": [
+        "RunAppAgent -> run_app('Default Browser')",
+        "WebSearchAgent -> search_web('best coding practices')"
+      ]
+    },
+    {
+      "query": "Create and open a 'todo.txt' file on the desktop in Notepad.",
+      "steps": [
+        "FileAgent -> create_file('C:/Users/Username/Desktop/todo.txt')",
+        "RunAppAgent -> run_app('Notepad')"
+      ]
+    },
+    {
+      "query": "Remove all '.tmp' files from Downloads and get a directory view.",
+      "steps": [
+        "FileAgent -> search('C:/Users/Username/Downloads/*.tmp', recursive=False)",
+        "FileAgent -> delete_file('<found file>')",
+        "FileAgent -> dir_path('C:/Users/Username/Downloads')"
+      ]
+    },
+    {
+      "query": "Open VLC, set volume to 40%, and play a video file 'movie.mp4'.",
+      "steps": [
+        "RunAppAgent -> run_app('VLC Media Player')",
+        "MediaControlAgent -> set_volume_level(40)",
+        "MediaControlAgent -> play()"
+      ]
+    },
+    {
+      "query": "Search workspace for a 'backup' folder; if found, delete it and display content.",
+      "steps": [
+        "FileAgent -> search('C:/Users/Username/Workspace/backup', recursive=False)",
+        "FileAgent -> delete_file('<found folder>')",
+        "FileAgent -> dir_path('C:/Users/Username/Workspace')"
+      ]
+    },
+    {
+      "query": "Generate a PowerShell script to list all installed programs.",
+      "steps": [
+        "PowershellAgent -> generate_command('List all installed programs on this machine')",
+        "PowershellAgent -> execute_command('<generated command>')"
+      ]
+    },
+    {
+      "query": "Create a file 'notes.md' with 'Meeting Notes' content in Projects and open it in VS Code.",
+      "steps": [
+        "FileAgent -> create_file('C:/Users/Username/Projects/notes.md')",
+        "FileAgent -> write_file('Meeting Notes', 'C:/Users/Username/Projects/notes.md')",
+        "RunAppAgent -> run_app('Visual Studio Code')"
+      ]
+    },
+    {
+      "query": "Copy 'presentation.pptx' from USB to desktop and open it with PowerPoint.",
+      "steps": [
+        "FileAgent -> search('E:/presentation.pptx', recursive=False)",
+        "FileAgent -> copy_file('E:/presentation.pptx', 'C:/Users/Username/Desktop/presentation.pptx')",
+        "RunAppAgent -> run_app('PowerPoint')"
+      ]
+    },
+    {
+      "query": "Write and execute a PowerShell command to find IP address details.",
+      "steps": [
+        "PowershellAgent -> generate_command('Get IP address details')",
+        "PowershellAgent -> execute_command('<generated command>')"
+      ]
+    },
+    {
+      "query": "Open a CSV file from Downloads, pause media, and set volume to 15%.",
+      "steps": [
+        "FileAgent -> search('C:/Users/Username/Downloads/*.csv', recursive=False)",
+        "RunAppAgent -> run_app('Excel')",
+        "MediaControlAgent -> pause()",
+        "MediaControlAgent -> set_volume_level(15)"
+      ]
+    },
+    {
+      "query": "Find and delete duplicate '.png' files on the desktop.",
+      "steps": [
+        "FileAgent -> search('C:/Users/Username/Desktop/*.png', recursive=False)",
+        "FileAgent -> delete_file('<found duplicate files>')"
+      ]
+    }
+  ]
+}
