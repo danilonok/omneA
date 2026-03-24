@@ -2,6 +2,14 @@
 
 **OmneA** is a diploma project built on a **multi-agent architecture** powered by Large Language Models (LLMs). It functions as an intelligent assistant designed to provide comprehensive control and automation for the Windows Operating System.
 
+Video example:
+
+
+
+https://github.com/user-attachments/assets/712555e8-0901-4d2b-955f-5e2e60f7e8b1
+
+
+
 ## Features 
 
 * **Comprehensive OS Control:** OmneA controls your PC's functionalities, simulating the actions of a real user. 
